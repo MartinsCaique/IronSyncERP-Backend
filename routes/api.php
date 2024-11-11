@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/* Configuração Rotas */
+
+use App\Http\Controllers\ClienteController;
+
+Route::resource('/clientes', ClienteController::class);
