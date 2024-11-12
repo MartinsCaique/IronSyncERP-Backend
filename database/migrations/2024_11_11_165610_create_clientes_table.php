@@ -9,24 +9,24 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id('id_emp');
-            $table->string('razao_social_emp', 150);
-            $table->string('nome_fantasia_emp', 255);
-            $table->string('cnpj_emp', 18)->unique();
-            $table->string('inscricao_estadual_emp', 14)->nullable();
-            $table->string('pais_emp', 100);
-            $table->string('estado_emp', 100);
-            $table->string('cidade_emp', 150);
-            $table->string('logradouro_emp', 255);
-            $table->integer('numero_emp');
-            $table->string('bairro_emp', 150);
-            $table->string('cep_emp', 16);
-            $table->string('telefone_emp', 15);
-            $table->string('email_emp', 150)->unique();
-            $table->string('site_emp', 255)->nullable();
-            $table->string('nome_cont', 255);
-            $table->string('cargo_cont', 150);
-            $table->string('setor_cont', 150);
+            $table->id('id');
+            $table->string('razaoSocial', 150);
+            $table->string('nomeFantasia', 255)->nullable();
+            $table->string('cnpj', 18)->unique();
+            $table->string('inscricaoEstadual', 14);
+            $table->string('pais', 100);
+            $table->string('estado', 100);
+            $table->string('cidade', 150);
+            $table->string('logradouro', 255);
+            $table->integer('numero');
+            $table->string('bairro', 150);
+            $table->string('cep', 16);
+            $table->string('telefone', 15);
+            $table->string('email', 150)->unique();
+            $table->string('site', 255)->nullable();
+            $table->string('contatoNome', 255);
+            $table->string('ContatoCargo', 150);
+            $table->string('contatoSetor', 150);
             $table->timestamps();
         });
     }

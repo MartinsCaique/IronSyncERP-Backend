@@ -64,4 +64,11 @@ return [
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
     ],
 
+    // config/sanctum.php
+    'stateful' => [
+        'localhost',
+        'http://127.0.0.1:8000',
+        'http://localhost:5173',
+    ],
+
 ];

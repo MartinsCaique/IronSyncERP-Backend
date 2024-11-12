@@ -13,7 +13,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        return response()->json($clientes);
+        // return response()->json($clientes);
     }
 
     /**
@@ -30,23 +30,23 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'razao_social_emp' => 'required|string|max:150',
-            'nome_fantasia_emp' => 'required|string|max:255',
-            'cnpj_emp' => 'required|string|max:18|unique:clientes',
-            'inscricao_estadual_emp' => 'nullable|string|max:14',
-            'pais_emp' => 'required|string|max:100',
-            'estado_emp' => 'required|string|max:100',
-            'cidade_emp' => 'required|string|max:150',
-            'logradouro_emp' => 'required|string|max:255',
-            'numero_emp' => 'required|integer',
-            'bairro_emp' => 'required|string|max:150',
-            'cep_emp' => 'required|string|max:16',
-            'telefone_emp' => 'required|string|max:15',
-            'email_emp' => 'required|string|email|max:150|unique:clientes',
-            'site_emp' => 'nullable|string|max:255',
-            'nome_cont' => 'required|string|max:255',
-            'cargo_cont' => 'required|string|max:150',
-            'setor_cont' => 'required|string|max:150'
+            'razaoSocial' => 'required|string|max:150',
+            'nome_fantasia' => 'nullable|string|max:255',
+            'cnpj' => 'required|string|max:18|unique:clientes',
+            'inscricaoEstadual' => 'nullable|string|max:14',
+            'pais' => 'required|string|max:100',
+            'estado' => 'required|string|max:100',
+            'cidade' => 'required|string|max:150',
+            'logradouro' => 'required|string|max:255',
+            'numero' => 'required|integer',
+            'bairro' => 'required|string|max:150',
+            'cep' => 'required|string|max:16',
+            'telefone' => 'required|string|max:15',
+            'email' => 'required|string|email|max:150|unique:clientes',
+            'site' => 'nullable|string|max:255',
+            'contatoNome' => 'required|string|max:255',
+            'contatoCargo' => 'required|string|max:150',
+            'contatoSetor' => 'required|string|max:150'
         ]);
 
         $cliente = Cliente::create($validatedData);
