@@ -31,9 +31,9 @@ class ClienteController extends Controller
     {
         $validatedData = $request->validate([
             'razaoSocial' => 'required|string|max:150',
-            'nome_fantasia' => 'nullable|string|max:255',
+            'nomeFantasia' => 'nullable|string|max:255',
             'cnpj' => 'required|string|max:18|unique:clientes',
-            'inscricaoEstadual' => 'nullable|string|max:14',
+            'inscricaoEstadual' => 'nullable|string|max:15',
             'pais' => 'required|string|max:100',
             'estado' => 'required|string|max:100',
             'cidade' => 'required|string|max:150',
@@ -50,7 +50,7 @@ class ClienteController extends Controller
         ]);
 
         $cliente = Cliente::create($validatedData);
-        dd($cliente, 201);
+        return response()->json($cliente, 201);
     }
 
     /**
