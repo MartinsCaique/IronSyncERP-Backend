@@ -10,14 +10,15 @@ class MaterialController extends Controller
     // Listar todos os materiais
     public function index()
     {
-        $materiais = Material::all();
-        return view('materiais.index', compact('materiais'));
+        $materiais = Material::all();        
+        return response()->json($materiais);
+
     }
 
     // Mostrar formulário de criação
     public function create()
     {
-        return view('materiais.create');
+        // 
     }
 
     // Salvar novo material no banco de dados
@@ -31,9 +32,8 @@ class MaterialController extends Controller
             'descricao' => 'nullable|string',
         ]);
 
-        Material::create($request->all());
-
-        return redirect()->route('materiais.index')->with('success', 'Material criado com sucesso!');
+        $material = Material::create($request->all());
+        return response()->json($material, 201);
     }
 
     // Mostrar formulário de edição
@@ -43,26 +43,17 @@ class MaterialController extends Controller
     }
 
     // Atualizar material no banco de dados
-    public function update(Request $request, Material $material)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'preco' => 'required|numeric|min:0',
-            'especificacaoTecnica' => 'nullable|string',
-            'origem' => 'nullable|string',
-            'descricao' => 'nullable|string',
-        ]);
-
+        $material = Material::findOrFail($id);
         $material->update($request->all());
-
-        return redirect()->route('materiais.index')->with('success', 'Material atualizado com sucesso!');
+        return response()->json($material);
     }
 
     // Excluir material
-    public function destroy(Material $material)
+    public function destroy(string $id)
     {
-        $material->delete();
-
-        return redirect()->route('materiais.index')->with('success', 'Material excluído com sucesso!');
+        Material::destroy($id);
+        return response()->json(null, 204);
     }
 }
