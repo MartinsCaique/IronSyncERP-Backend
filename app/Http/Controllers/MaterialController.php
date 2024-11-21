@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Material;
 use Illuminate\Http\Request;
+use App\Models\Material;
 
 class MaterialController extends Controller
 {
-    // Listar todos os materiais
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $materiais = Material::all();        
@@ -15,16 +17,20 @@ class MaterialController extends Controller
 
     }
 
-    // Mostrar formulário de criação
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         // 
     }
 
-    // Salvar novo material no banco de dados
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nome' => 'required|string|max:255',
             'preco' => 'required|numeric|min:0',
             'especificacaoTecnica' => 'nullable|string',
@@ -32,17 +38,30 @@ class MaterialController extends Controller
             'descricao' => 'nullable|string',
         ]);
 
-        $material = Material::create($request->all());
+        $material = Material::create($validatedData);
         return response()->json($material, 201);
     }
 
-    // Mostrar formulário de edição
-    public function edit(Material $material)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        return view('materiais.edit', compact('material'));
+        $material = Material::findOrFail($id);
+        return response()->json($material);
     }
 
-    // Atualizar material no banco de dados
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Material $material)
+    {
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $material = Material::findOrFail($id);
