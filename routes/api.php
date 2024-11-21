@@ -21,8 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* Configuração Rotas */
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\MaterialController;
 
 Route::middleware(['api'])->group(function () {
     Route::resource('/clientes', ClienteController::class);
-    // Suas rotas aqui
+    Route::resource('/materiais', MaterialController::class);
 });
