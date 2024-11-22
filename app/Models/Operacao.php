@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Operacao extends Model
 {
     use HasFactory;
+
+    protected $table = 'operacoes';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+    protected $fillable = [
+        'operacao',
+        'preco',
+        'descricao',
+    ];
 }

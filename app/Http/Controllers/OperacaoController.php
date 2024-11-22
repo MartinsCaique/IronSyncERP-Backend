@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Material;
+use App\Models\Operacao;
 
-class MaterialController extends Controller
+class OperacaoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $materiais = Material::all();        
-        return response()->json($materiais);
+        $operacoes = Operacao::all();      
+        return response()->json($operacoes);
     }
 
     /**
@@ -30,15 +30,13 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
+            'operacao' => 'required|string|max:255',
             'preco' => 'required|numeric|min:0',
-            'especificacaoTecnica' => 'nullable|string',
-            'origem' => 'nullable|string',
             'descricao' => 'nullable|string',
         ]);
 
-        $material = Material::create($validatedData);
-        return response()->json($material, 201);
+        $operacao = Operacao::create($validatedData);
+        return response()->json($operacao, 201);
     }
 
     /**
@@ -46,8 +44,8 @@ class MaterialController extends Controller
      */
     public function show(string $id)
     {
-        $material = Material::findOrFail($id);
-        return response()->json($material);
+        $operacao = Operacao::findOrFail($id);
+        return response()->json($operacao);
     }
 
     /**
@@ -55,7 +53,7 @@ class MaterialController extends Controller
      */
     public function edit(string $id)
     {
-        
+        //
     }
 
     /**
@@ -63,15 +61,15 @@ class MaterialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $material = Material::findOrFail($id);
-        $material->update($request->all());
-        return response()->json($material);
+        $operacao = Operacao::findOrFail($id);
+        $operacao->update($request->all());
+        return response()->json($operacao);
     }
 
-    // Excluir material
+    // Excluir operacao
     public function destroy(string $id)
     {
-        Material::destroy($id);
+        Operacao::destroy($id);
         return response()->json(null, 204);
     }
 }

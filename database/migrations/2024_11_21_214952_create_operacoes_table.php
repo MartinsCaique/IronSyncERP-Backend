@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('operacoes', function (Blueprint $table) {
             $table->id();
+            $table->string('operacao');
+            $table->decimal('preco', 8, 2);
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }

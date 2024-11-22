@@ -22,8 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\OperacaoController;
 
 Route::middleware(['api'])->group(function () {
     Route::resource('/clientes', ClienteController::class);
     Route::resource('/materiais', MaterialController::class);
+    Route::resource('/operacoes', OperacaoController::class);
 });
