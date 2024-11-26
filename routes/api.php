@@ -14,20 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 /* Configuração Rotas */
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\OperacaoController;
 use App\Http\Controllers\OrcamentoController;
+use App\Http\Controllers\AuthController;
 
-Route::middleware(['api'])->group(function () {
+// Rotas públicas (não requerem autenticação)
+Route::post('/admin/login', [AuthController::class, 'loginAdmin']);
+
+// Rotas protegidas por autenticação via Sanctum
+Route::middleware(['auth:sanctum'])->group(function () {
+    // Rotas para clientes
     Route::resource('/clientes', ClienteController::class);
+
+    // Rotas para materiais
     Route::resource('/materiais', MaterialController::class);
+
+    // Rotas para operações
     Route::resource('/operacoes', OperacaoController::class);
+
+    // Rotas para orçamentos
     Route::resource('/orcamentos', OrcamentoController::class);
+
+    // Rota de logout
+    Route::post('/admin/logout', [AuthController::class, 'logoutAdmin']);
 });

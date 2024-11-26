@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('orcamento_id')->constrained('orcamentos')->onDelete('cascade');
             $table->foreignId('operacao_id')->constrained('operacoes')->onDelete('cascade'); // Relacionamento com operações
-            $table->integer('quantidade_horas');
+            $table->integer('horas');
             $table->timestamps();
         });
     }

@@ -78,7 +78,7 @@ class OrcamentoController extends Controller
                 OperacaoOrcamento::create([
                     'orcamento_id' => $orcamento->id,
                     'operacao_id' => $operacao['operacao_id'],
-                    'quantidade_horas' => $operacao['quantidade_horas'],
+                    'horas' => $operacao['horas'],
                 ]);
             }
         }
@@ -133,7 +133,7 @@ class OrcamentoController extends Controller
             OperacaoOrcamento::create([
                 'orcamento_id' => $orcamento->id,
                 'operacao_id' => $operacao['operacao_id'],
-                'quantidade_horas' => $operacao['quantidade_horas'],
+                'horas' => $operacao['horas'],
             ]);
         }
 
