@@ -26,7 +26,7 @@ use App\Http\Controllers\AuthController;
 Route::post('/admin/login', [AuthController::class, 'loginAdmin']);
 
 // Rotas protegidas por autenticação via Sanctum
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['api'])->group(function () {
     // Rotas para clientes
     Route::resource('/clientes', ClienteController::class);
 
@@ -38,6 +38,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Rotas para orçamentos
     Route::resource('/orcamentos', OrcamentoController::class);
+    Route::resource('/clientes', ClienteController::class)->only(['index']);
+    Route::resource('/materiais', MaterialController::class)->only(['index']);
+    Route::resource('/operacoes', OperacaoController::class)->only(['index']);
 
     // Rota de logout
     Route::post('/admin/logout', [AuthController::class, 'logoutAdmin']);
