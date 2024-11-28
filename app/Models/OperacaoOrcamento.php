@@ -14,7 +14,7 @@ class OperacaoOrcamento extends Model
     protected $fillable = [
         'orcamento_id',
         'operacao_id',
-        'quantidade_horas',
+        'horas',
     ];
 
     public function orcamento()
