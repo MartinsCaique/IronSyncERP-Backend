@@ -71,7 +71,7 @@ class OrcamentoController extends Controller
                     'peso' => $peca['peso'],
                 ]);
             }
-        }
+        }      
 
         // Adicionar operações
         if ($request->has('operacoes')) {
@@ -82,7 +82,7 @@ class OrcamentoController extends Controller
                     'horas' => $operacao['horas'],
                 ]);
             }
-        }
+        } 
 
         return response()->json(['success' => 'Orçamento criado com sucesso!']);
     }
