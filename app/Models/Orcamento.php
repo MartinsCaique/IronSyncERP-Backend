@@ -11,7 +11,7 @@ class Orcamento extends Model
 
     protected $table = 'orcamentos';
 
-    protected $fillable = ['nome', 'cliente_id'];
+    protected $fillable = ['nome', 'cliente_id', 'contato'];
 
     public function cliente()
     {

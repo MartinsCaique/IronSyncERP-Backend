@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nome');
             $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade'); // Relacionamento com a tabela clientes
+            $table->integer('contato')->unsigned();
             $table->timestamps();
         });
     }

@@ -39,13 +39,14 @@ class OrcamentoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'cliente_id' => 'required|exists:clientes,id',
+            'contato'=> 'required|integer',
             'ferramentas' => 'array',
             'pecas' => 'array',
             'operacoes' => 'array',
         ]);
 
         // Criar o orçamento
-        $orcamento = Orcamento::create($request->only('nome', 'cliente_id'));
+        $orcamento = Orcamento::create($request->only('nome', 'cliente_id', 'contato'));
 
         // Adicionar ferramentas
         if ($request->has('ferramentas')) {
@@ -102,7 +103,7 @@ class OrcamentoController extends Controller
         ]);
 
         // Atualizar o orçamento
-        $orcamento->update($request->only('nome', 'cliente_id'));
+        $orcamento->update($request->only('nome', 'cliente_id', 'contato'));
 
         // Atualizar ferramentas
         FerramentaOrcamento::where('orcamento_id', $orcamento->id)->delete();
