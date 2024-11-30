@@ -32,4 +32,15 @@ class Orcamento extends Model
     {
         return $this->hasMany(OperacaoOrcamento::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($orcamento) {
+            $orcamento->ferramentas()->delete();
+            $orcamento->pecas()->delete();
+            $orcamento->operacoes()->delete();
+
+            \App\Models\OperacoesLog::whereIn('operacao_id', $orcamento->operacoes->pluck('operacao_id'))->delete();
+        });
+    }
 }

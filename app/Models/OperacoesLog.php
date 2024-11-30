@@ -19,4 +19,9 @@ class OperacoesLog extends Model
     {
         return $this->belongsTo(Operacao::class);
     }
+
+    public function orcamento()
+    {
+        return $this->belongsTo(Orcamento::class); // Se existir uma relação direta
+    }
 }

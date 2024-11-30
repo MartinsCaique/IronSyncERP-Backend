@@ -148,9 +148,22 @@ class OrcamentoController extends Controller
     }
 
     // Excluir orçamento
-    public function destroy(Orcamento $orcamento)
-    {
-        $orcamento->delete();
-        return response()->json(['success' => 'Orçamento excluído com sucesso!']);
-    }
+    public function destroy($id)
+{
+    $orcamento = Orcamento::findOrFail($id);
+
+    // Excluir logs de operações relacionadas
+    \App\Models\OperacoesLog::whereIn('operacao_id', $orcamento->operacoes->pluck('operacao_id'))->delete();
+
+    // Excluir associações relacionadas
+    $orcamento->ferramentas()->delete();
+    $orcamento->pecas()->delete();
+    $orcamento->operacoes()->delete();
+
+    // Excluir o orçamento
+    $orcamento->delete();
+
+    return response()->json(['success' => 'Orçamento e associações excluídos com sucesso!']);
+}
+
 }

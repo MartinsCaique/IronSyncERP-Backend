@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('operacoes_orcamento', function (Blueprint $table) {
             $table->id();
             $table->foreignId('orcamento_id')->constrained('orcamentos')->onDelete('cascade');
-            $table->foreignId('operacao_id')->constrained('operacoes')->onDelete('cascade'); // Relacionamento com operações
-            $table->integer('horas');
+            $table->foreignId('operacao_id')->constrained('operacoes')->onDelete('restrict'); // Relacionamento com operações
+            $table->decimal('horas', 3, 2);
             $table->timestamps();
         });
     }

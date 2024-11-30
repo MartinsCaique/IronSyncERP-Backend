@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('nome');
             $table->integer('quantidade');
             $table->text('nota')->nullable();
-            $table->foreignId('material_id')->constrained('materiais')->onDelete('cascade'); // Relacionamento com materiais
+            $table->foreignId('material_id')->constrained('materiais')->onDelete('restrict'); // Relacionamento com materiais
             $table->decimal('peso', 8, 2);
             $table->timestamps();
         });

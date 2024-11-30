@@ -12,7 +12,7 @@ class CreateOperacoesLogsTable extends Migration
             $table->id();
             $table->foreignId('operacao_id')->constrained('operacoes')->onDelete('cascade'); // Relaciona com a tabela de operações
             $table->date('data'); // Data do uso da operação
-            $table->integer('horas'); // Total de horas usadas
+            $table->decimal('horas', 3, 2); // Total de horas usadas
             $table->timestamps(); // Campos created_at e updated_at
         });
     }
