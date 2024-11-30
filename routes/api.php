@@ -21,6 +21,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\OperacaoController;
 use App\Http\Controllers\OrcamentoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
 // Rotas públicas (não requerem autenticação)
 Route::post('/admin/login', [AuthController::class, 'loginAdmin']);
@@ -41,6 +42,7 @@ Route::middleware(['api'])->group(function () {
     Route::resource('/clientes', ClienteController::class)->only(['index']);
     Route::resource('/materiais', MaterialController::class)->only(['index']);
     Route::resource('/operacoes', OperacaoController::class)->only(['index']);
+    Route::get('/dashboard/horas-operacoes', [DashboardController::class, 'totalHorasPorOperacao']);
 
     // Rota de logout
     Route::post('/admin/logout', [AuthController::class, 'logoutAdmin']);

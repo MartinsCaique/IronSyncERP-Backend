@@ -9,6 +9,7 @@ use App\Models\OperacaoOrcamento;
 use App\Models\Cliente;
 use App\Models\Material;
 use App\Models\Operacao;
+use App\Models\OperacoesLog;
 use Illuminate\Http\Request;
 
 class OrcamentoController extends Controller
@@ -80,6 +81,11 @@ class OrcamentoController extends Controller
                     'orcamento_id' => $orcamento->id,
                     'operacao_id' => $operacao['operacao_id'],
                     'horas' => $operacao['horas'],
+                ]);
+                OperacoesLog::create([
+                    'operacao_id' => $operacao['operacao_id'], // ID da operação
+                    'data' => now()->format('Y-m-d'), // Data atual
+                    'horas' => $operacao['horas'], // Horas usadas
                 ]);
             }
         } 
