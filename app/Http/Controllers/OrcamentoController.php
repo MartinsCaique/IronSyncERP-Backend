@@ -10,6 +10,7 @@ use App\Models\Cliente;
 use App\Models\Material;
 use App\Models\Operacao;
 use App\Models\OperacoesLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrcamentoController extends Controller
@@ -84,7 +85,7 @@ class OrcamentoController extends Controller
                 ]);
                 OperacoesLog::create([
                     'operacao_id' => $operacao['operacao_id'], // ID da operação
-                    'data' => now()->format('Y-m-d'), // Data atual
+                    'data' => Carbon::now('America/Sao_Paulo')->format('Y-m-d'), // Data atual
                     'horas' => $operacao['horas'], // Horas usadas
                 ]);
             }
