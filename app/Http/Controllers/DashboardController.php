@@ -26,4 +26,18 @@ class DashboardController extends Controller
         return response()->json($logs);
     }
 
+    public function getCounts()
+    {
+        $clientesCount = DB::table('clientes')->count();
+        $operacoesCount = DB::table('operacoes')->count();
+        $materiaisCount = DB::table('materiais')->count();
+        $orcamentosCount = DB::table('orcamentos')->count();
+
+        return response()->json([
+            'clientes' => $clientesCount,
+            'operacoes' => $operacoesCount,
+            'materiais' => $materiaisCount,
+            'orcamentos' => $orcamentosCount,
+        ]);
+    }
 }

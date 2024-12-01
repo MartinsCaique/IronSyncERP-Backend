@@ -42,8 +42,11 @@ Route::middleware(['api'])->group(function () {
     Route::resource('/clientes', ClienteController::class)->only(['index']);
     Route::resource('/materiais', MaterialController::class)->only(['index']);
     Route::resource('/operacoes', OperacaoController::class)->only(['index']);
-    Route::get('/dashboard/horas-operacoes', [DashboardController::class, 'totalHorasPorOperacao']);
 
+    // Rotas para dashboard
+    Route::get('/dashboard/horas-operacoes', [DashboardController::class, 'totalHorasPorOperacao']);
+    Route::get('/dashboard/counts', [DashboardController::class, 'getCounts']);
+    
     // Rota de logout
     Route::post('/admin/logout', [AuthController::class, 'logoutAdmin']);
 });
